@@ -1,61 +1,41 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Vega-Embed for Vega-Lite</title>
-
-    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
-    <script src="build/vega-embed.js"></script>
-    <style>
-      body {
-        margin: 0;
-      }
-      #vis {
-        width: 100vw;
-        height: 100vh;
-      }
-    </style>
+    <title>This is the title of the webpage!</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.16.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.16.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
   </head>
-
   <body>
-    <div id="vis"></div>
-    <script>
-      async function run() {
-        const spec = {
-          $schema: "https://vega.github.io/schema/vega-lite/v4.json",
-          width: "container",
-          height: "container",
-          data: {
-            values: [
-              { a: "A", b: 28 },
-              { a: "B", b: 55 },
-              { a: "C", b: 43 },
-              { a: "D", b: 91 },
-              { a: "E", b: 81 },
-              { a: "F", b: 53 },
-              { a: "G", b: 19 },
-              { a: "H", b: 87 },
-              { a: "I", b: 52 },
-            ],
-          },
-          mark: "bar",
-          encoding: {
-            x: { field: "a", type: "nominal" },
-            y: { field: "b", type: "quantitative" },
-            tooltip: { field: "b", type: "quantitative" },
-          },
-        };
-
-        const result = await vegaEmbed("#vis", spec, {
-          actions: true,
-        });
-
-        console.log(result);
-      }
-
-      run();
-    </script>
+      <p>
+      Here's my first paragraph!
+      </p>
+      <p>
+      This is an example paragraph. Anything in the <strong>body</strong>
+      tag will appear on the page, just like this <strong>p</strong>
+      tag and its contents.
+      </p>
+      <div id="viz">
+      </div>
+      <script>
+var vlSpec = {
+    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+    "data": {
+        "values": [
+            {"A": 10, "B": 21, "C": 2},
+            {"A": 30, "B": 20, "C": 4},
+            {"A": 25, "B": 15, "C": 6},
+            {"A": 5, "B": 30, "C": 8}
+        ]
+    },
+    "mark": "circle",
+    "encoding": {
+        "x": { "field": "A", "type": "quantitative"},
+        "y": { "field": "B", "type": "quantitative"},
+        "size": { "field": "C", "type": "quantitative"}
+    }
+};
+        vegaEmbed('#viz', vlSpec);
+      </script>
   </body>
 </html>
