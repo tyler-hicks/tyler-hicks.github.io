@@ -1,19 +1,19 @@
 <!doctype html>
 <html>
   <head>
-    <title>This is the title of the webpage!</title>
+    <title>Square Footage of UIUC Over Time</title>
     <script src="https://cdn.jsdelivr.net/npm/vega@5.16.1"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.16.2"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
   </head>
   <body>
       <p>
-      Here's my first paragraph!
+      The University of Illinois at Urbana-Champaign (UIUC) was founded in 1867. Since its founding, it has grown to become the fifth-largest state agency 
+      within Illinois when it comes to square footage.
       </p>
       <p>
-      This is an example paragraph. Anything in the <strong>body</strong>
-      tag will appear on the page, just like this <strong>p</strong>
-      tag and its contents.
+      The graph below shows the growth of UIUC over time since 1867. It shows that while there was explosive growth in the past,
+      the growth rate has slowed as property has become harder to obtain in Urbana and Champaign.
       </p>
       <div id="viz">
       </div>
@@ -28,11 +28,10 @@ var vlSpec = {
             {"A": 5, "B": 30, "C": 8}
         ]
     },
-    "mark": "circle",
+    "mark": "area",
     "encoding": {
         "x": { "field": "A", "type": "quantitative"},
         "y": { "field": "B", "type": "quantitative"},
-        "size": { "field": "C", "type": "quantitative"}
     }
 };
         vegaEmbed('#viz', vlSpec);
