@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
   <head>
-    <title>This is the title of the webpage!</title>
+    <title>Growth of UIUC over time</title>
     <script src="https://cdn.jsdelivr.net/npm/vega@5.16.1"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.16.2"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
@@ -19,17 +19,60 @@
       </div>
       <script>
 var vlSpec = {
-    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-    "data": {
-        "url": "random_data.json"
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "data": {
+    "url": "https://uiuc-ischool-dataviz.github.io/spring2019online/week02/building_inventory.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum['Year Constructed'] != 0 && datum['Year Acquired'] != 0 && datum['Square Footage'] != 0 && datum['Agency Name'] === 'University of Illinois'"
     },
-    "mark": "circle",
-    "encoding": {
-        "x": { "field": "A", "type": "quantitative"},
-        "y": { "field": "B", "type": "quantitative"},
-        "size": { "field": "C", "type": "quantitative"}
+    {
+      "sort": [
+        {
+          "field": "Year Constructed"
+        }
+      ],
+      "window": [
+        {
+          "op": "sum",
+          "field": "Square Footage",
+          "as": "Square Footage (cumulative)"
+        }
+      ],
+      "frame": [
+        null,
+        0
+      ]
     }
-};
+  ],
+  "mark": "area",
+  "height": 500,
+  "width": 500,
+  "encoding": {
+    "column": {
+      "field": "Square Footage of UIUC Buildings",
+      "header": {
+        "titleFontSize": 20,
+        "labelFontSize": 0
+      }
+    },
+    "x": {
+      "field": "Year Constructed",
+      "type": "temporal",
+      "title": "Time"
+    },
+    "y": {
+      "field": "Square Footage (cumulative)",
+      "type": "quantitative",
+      "scale": {
+        "type": "log"
+      }
+    }
+  },
+  "config": {}
+}
+    };
         vegaEmbed('#viz', vlSpec);
       </script>
   </body>
